@@ -25,19 +25,30 @@ SECRET_KEY = 'django-insecure-s6_o+de_6u(^ega-7grj#ez_ht8jnas7)yfr$krau9!(_ke7(i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost',
+    'http://127.0.0.1',
+    'http://0.0.0.0',
+]
 
 
 # Application definition
+LOCAL_APPS = [
+    'users',    
+]
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken'
+] + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +61,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'server.urls'
+
+AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {
@@ -69,14 +82,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+  'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'trello',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
