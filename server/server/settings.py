@@ -97,8 +97,8 @@ DATABASES = {
   'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'trello',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'USER': 'qhuy',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '5432',
     }
