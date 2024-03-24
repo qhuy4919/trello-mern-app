@@ -3,15 +3,19 @@ from django.db import models
 
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password: None):
-        if username is None:
-            raise TypeError('User should have a username')
-        if email is None:
-            raise TypeError('User should have email')
-        
-        user = self.model(email=self.normalize_email(email), username=username)
-        user.set_password(password)
-        user.save()
-        
+        try:
+            if username is None:
+                raise TypeError('User should have a username')
+            if email is None:
+                raise TypeError('User should have email')
+                
+            user = self.model(email=self.normalize_email(email), username=username)
+            user.set_password(password)
+            user.save()
+
+        except:
+            raise TypeError('Save User failed')
+
         return user
     
     def create_superuser(self, username, email=None, password=None):
@@ -40,6 +44,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "username"
     
     objects = UserManager()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+
     
     
 

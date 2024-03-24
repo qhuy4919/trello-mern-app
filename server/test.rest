@@ -1,7 +1,7 @@
 POST  http://0.0.0.0:8000/signup
 Content-Type: application/json
 
-{"username": "qhuy4919-01", "password": "quanghuy4919", "email": "quanghuy4919@gmail.com"}
+{"username": "qhuy4919-12", "password": "quanghuy4919", "email": "quanghuy4919@gmail.com"}
 
 ###
 

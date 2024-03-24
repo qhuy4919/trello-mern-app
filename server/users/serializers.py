@@ -15,7 +15,12 @@ class UserSigninSerialize(serializers.Serializer):
         fields = ['id', 'username', 'password', 'email']
 
     def create(self, validated_data):
+        print(validated_data)
         return User.objects.create_user(**validated_data)
+    
+    def username_exists(self, username):
+        return User.objects.filter(username=username).exists()
+
 
 class UserLoginSerialize(serializers.Serializer):
     username = serializers.CharField()
