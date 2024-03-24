@@ -64,7 +64,6 @@ def UserLogin(request):
 @api_view(['POST'])
 def UserLogout(request):
     if request.user.is_authenticated:
-        print('okokooko', )
         request.user.auth_token.delete()    
         logout(request)
     

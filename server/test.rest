@@ -8,7 +8,7 @@ Content-Type: application/json
 POST http://0.0.0.0:8000/login
 Content-Type: application/json
 
-{"username": "qhuy4919-01", "password": "quanghuy4919"}
+{"username": "qhuy4919-12", "password": "quanghuy4919"}
 
 ###
 POST http://0.0.0.0:8000/logout
